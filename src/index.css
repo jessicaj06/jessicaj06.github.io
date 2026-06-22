@@ -19,6 +19,10 @@
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
+:root {
+  --ring-gradient: conic-gradient(from 0deg, #9fe000, #22d3ee, #7c5cff, #9fe000);
+}
+
 html {
   scroll-behavior: smooth;
 }

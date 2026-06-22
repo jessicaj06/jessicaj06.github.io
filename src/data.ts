@@ -52,15 +52,6 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
       { name: 'SQL basics', level: 45, note: 'Postgres / SQLite' },
     ],
   },
-  {
-    title: 'Tooling',
-    skills: [
-      { name: 'Git / GitHub', level: 75, note: 'Daily workflow' },
-      { name: 'Linux', level: 70, note: 'Dev environment' },
-      { name: 'Docker', level: 45, note: 'Reproducible builds' },
-      { name: 'TypeScript', level: 55, note: 'This site!' },
-    ],
-  },
 ]
 
 export type Project = {

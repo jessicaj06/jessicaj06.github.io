@@ -100,7 +100,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ---- Right: framed portrait ---- */}
+        {/* ---- Right: animated framed portrait ---- */}
         <motion.div
           variants={fadeUp}
           custom={2}
@@ -108,35 +108,55 @@ export default function Hero() {
           animate="show"
           className="relative mx-auto w-full max-w-sm"
         >
-          {/* glowing gradient outline ring */}
-          <div className="group relative">
-            <div
-              className="absolute -inset-1 rounded-[2rem] opacity-70 blur-md transition-opacity duration-300 group-hover:opacity-100"
-              style={{
-                background: 'linear-gradient(135deg, #9fe000, #22d3ee 50%, #7c5cff)',
-              }}
+          {/* gentle floating motion */}
+          <motion.div
+            className="group relative"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.025 }}
+          >
+            {/* pulsing blurred halo */}
+            <motion.div
+              aria-hidden
+              className="animate-spin-slow absolute -inset-4 rounded-[2.5rem] blur-2xl"
+              style={{ background: 'var(--ring-gradient)' }}
+              animate={{ opacity: [0.35, 0.7, 0.35] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             />
-            <div className="relative rounded-[2rem] bg-[var(--color-base)] p-[3px]">
+
+            {/* rotating gradient ring (revealed through the 3px frame padding) */}
+            <div className="relative overflow-hidden rounded-[2rem] p-[3px]">
               <div
-                className="rounded-[1.85rem] p-[2px]"
+                aria-hidden
+                className="animate-spin-slow absolute inset-[-60%]"
+                style={{ background: 'var(--ring-gradient)' }}
+              />
+              <img
+                src={profileImg}
+                alt={`${profile.name}, stargazing AI engineer`}
+                className="relative aspect-[4/5] w-full rounded-[1.8rem] object-cover"
+                loading="eager"
+              />
+              {/* sweeping shine */}
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute inset-[3px] rounded-[1.8rem]"
                 style={{
-                  background: 'linear-gradient(135deg, #9fe000, #22d3ee 50%, #7c5cff)',
+                  background:
+                    'linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.18) 48%, transparent 60%)',
+                  backgroundSize: '250% 250%',
                 }}
-              >
-                <img
-                  src={profileImg}
-                  alt={`${profile.name}, stargazing AI engineer`}
-                  className="aspect-[4/5] w-full rounded-[1.7rem] object-cover"
-                  loading="eager"
-                />
-              </div>
+                animate={{ backgroundPosition: ['180% 0%', '-80% 0%'] }}
+                transition={{ duration: 5, repeat: Infinity, repeatDelay: 2.5, ease: 'easeInOut' }}
+              />
             </div>
 
             {/* floating little name tag */}
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)]/90 px-4 py-1.5 font-mono text-xs text-slate-200 backdrop-blur">
-              <span className="text-[var(--color-neon)]">●</span> {profile.handle}
+              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[var(--color-neon)]" />{' '}
+              {profile.handle}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
