@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   GPU dark / neon theme tokens
+   NVIDIA-green primary, electric-violet secondary, deep space background.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-base: #05060a;
+  --color-surface: #0b0e16;
+  --color-surface-2: #11151f;
+  --color-line: #1d2433;
+
+  --color-neon: #76b900; /* NVIDIA green */
+  --color-neon-soft: #9fe000;
+  --color-violet: #7c5cff;
+  --color-cyan: #22d3ee;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-base);
+  color: #e7ebf3;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Glowing gradient text used for headlines + accents */
+.text-glow {
+  background: linear-gradient(120deg, var(--color-neon-soft), var(--color-cyan) 55%, var(--color-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card with subtle inner glow + hover lift */
+.card {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-2) 100%);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-neon) 50%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-neon) 25%, transparent),
+    0 18px 50px -20px color-mix(in srgb, var(--color-neon) 45%, transparent);
+}
+
+/* Animated conic glow behind the hero */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+/* Thin custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-neon) 60%, var(--color-line));
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-neon) 35%, transparent);
+}
